@@ -1,0 +1,24 @@
+
+obj/windows_gcc/Algorithms_Sorting/Algorithms_Sorting.o: src/Algorithms_Sorting/Algorithms_Sorting.cpp \
+ ../MM_CommonUtils/src/Assert/MyAssert.h \
+ ../MM_CommonUtils/src/Timer/Timer.h \
+ src/Algorithms_Sorting/Algorithms_Sorting.h \
+ ../MM_CommonUtils/src/my_math_lib/Permutations.h
+
+obj/windows_gcc/MM_SortingAlgorithms_main.o: src/MM_SortingAlgorithms_main.cpp \
+ ../MM_CommonUtils/src/WindowsUtils/WindowsUtils.h \
+ ../MM_CommonUtils/src/Timer/Timer.h \
+ ../MM_UnitTestFramework/src/MM_UnitTestFramework/MM_UnitTestFramework.h
+
+obj/windows_gcc/Sorting_dataStructure/Sorting_dataStructure.o: src/Sorting_dataStructure/Sorting_dataStructure.cpp \
+ src/Sorting_dataStructure/Sorting_dataStructure.h \
+ ../MM_CommonUtils/src/Assert/MyAssert.h \
+ ../MM_CommonUtils/src/Timer/Timer.h \
+ ../MM_CommonUtils/src/my_math_lib/Permutations.h
+
+obj/windows_gcc/Sorting_heapSort/Sorting_heapSort_v.o: src/Sorting_heapSort/Sorting_heapSort_v.cpp \
+ src/Sorting_heapSort/Sorting_heapSort_v.h \
+ src/Sorting_dataStructure/Sorting_dataStructure.h
+
+obj/windows_gcc/Sorting_heapSort/Sorting_heapSort_v1.o: src/Sorting_heapSort/Sorting_heapSort_v1.cpp \
+ src/Sorting_heapSort/Sorting_heapSort_v1.h

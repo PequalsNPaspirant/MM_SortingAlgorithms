@@ -1,11 +1,12 @@
 #include <iostream>
 #include <sstream>
+#include <cassert>
 using namespace std;
 
 #include "Sorting_dataStructure/Sorting_dataStructure.h"
-#include "Assert/MyAssert.h"
-#include "Timer/Timer.h"
-#include "my_math_lib/Permutations.h"
+//#include "Assert/MyAssert.h"
+#include "Timer/Timer_Timer.h"
+#include "Maths/Maths_Permutations.h"
 
 namespace mm {
 
@@ -253,21 +254,21 @@ namespace mm {
 			setOriginalPositions();
 		}
 		else
-			MyAssert::myRunTimeAssert(false, "Size is already set");
+			assert(false, "Size is already set");
 	}
 	const unsigned int DataSet::getSize() const { return m_size; }
 
 	Object& DataSet::operator[](const unsigned int index)
 	{
 		SingletonCounters::incrementArrayAccess();
-		MyAssert::myRunTimeAssert(index < m_size, "Size overflow");
+		assert(index < m_size, "Size overflow");
 		return m_data[index];
 	}
 
 	const Object& DataSet::operator[](const unsigned int index) const
 	{
 		SingletonCounters::incrementArrayAccess();
-		MyAssert::myRunTimeAssert(index < m_size, "Size overflow");
+		assert(index < m_size, "Size overflow");
 		return m_data[index];
 	}
 

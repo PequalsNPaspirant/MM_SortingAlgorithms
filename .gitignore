@@ -25,3 +25,9 @@
 /doc/~$SortingAlgos.xlsx
 /project_settings/windows_visual_studio/MM_SortingAlgorithms/MM_SortingAlgorithms/x64/Release/MM_Sorti.A7AB68B0.tlog/unsuccessfulbuild
 /project_settings/windows_visual_studio/MM_SortingAlgorithms/MM_SortingAlgorithms/x64/Debug/MM_Sorti.A7AB68B0.tlog/unsuccessfulbuild
+/project_settings/windows_visual_studio/MM_SortingAlgos/MM_SortingAlgos/x64/Debug/MM_Sorti.A7AB68B0.tlog/*.tlog
+/project_settings/windows_visual_studio/MM_SortingAlgos/MM_SortingAlgos/x64/Debug/*.log
+/project_settings/windows_visual_studio/MM_SortingAlgos/MM_SortingAlgos/x64/Release/MM_Sorti.A7AB68B0.tlog/*.tlog
+/project_settings/windows_visual_studio/MM_SortingAlgos/MM_SortingAlgos/x64/Debug/MM_Sorti.A7AB68B0.tlog/*.lastbuildstate
+/project_settings/windows_visual_studio/MM_SortingAlgos/MM_SortingAlgos/x64/Release/MM_Sorti.A7AB68B0.tlog/*.lastbuildstate
+*.log

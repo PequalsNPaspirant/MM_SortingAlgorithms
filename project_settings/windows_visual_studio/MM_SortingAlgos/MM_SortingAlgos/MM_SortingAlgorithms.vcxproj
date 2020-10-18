@@ -19,22 +19,48 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\src\Maths\Maths_Permutations.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_bubbleSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_bucketSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_countingSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_heapSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_insertionSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_mergeSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_quickSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_radixSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_selectionSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_shellSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_smoothSort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Algorithms\Sorting_STL_Sort.cpp" />
+    <ClCompile Include="..\..\..\..\src\Sorting_Utils\Sorting_Utils.cpp" />
     <ClCompile Include="..\..\..\..\src\Timer\Timer_Timer.cpp" />
     <ClCompile Include="..\..\..\..\src\Sorting_dataStructure\Sorting_dataStructure.cpp" />
-    <ClCompile Include="..\..\..\..\src\Sorting_heapSort\Sorting_heapSort_v1.cpp" />
     <ClCompile Include="..\..\..\..\src\_MM_SortingAlgos_main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\src\Maths\Maths_Permutations.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_bubbleSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_bucketSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_countingSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_heapSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_insertionSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_mergeSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_quickSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_radixSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_selectionSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_shellSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_smoothSort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Algorithms\Sorting_STL_Sort.h" />
+    <ClInclude Include="..\..\..\..\src\Sorting_Utils\Sorting_Utils.h" />
     <ClInclude Include="..\..\..\..\src\MM_UnitTestFramework\MM_UnitTestFramework.h" />
     <ClInclude Include="..\..\..\..\src\Timer\Timer_Timer.h" />
     <ClInclude Include="..\..\..\..\src\Sorting_dataStructure\Sorting_dataStructure.h" />
-    <ClInclude Include="..\..\..\..\src\Sorting_heapSort\Sorting_heapSort_v1.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{A7AB68B0-E38A-4CF9-9E53-1EA9DD3462D8}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>MM_SortingAlgorithms</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

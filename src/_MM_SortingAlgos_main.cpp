@@ -8,7 +8,8 @@
 namespace mm {
 
 	//Global function declarations
-	void Sorting();
+	//void Sorting();
+	MM_DEFINE_FLAG(true, sortingUnitTests);
 }
 
 using namespace mm;

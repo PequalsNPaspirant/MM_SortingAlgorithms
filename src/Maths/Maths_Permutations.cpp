@@ -186,7 +186,7 @@ namespace mm {
 	}
 
 
-	void testPermutations()
+	void unitTesting_Permutations()
 	{
 		Permutations::generateWordPermutations("");
 		Permutations::generateWordPermutations("A");

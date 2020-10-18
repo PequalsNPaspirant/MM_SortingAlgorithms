@@ -6,6 +6,19 @@ using namespace std;
 
 namespace mm {
 
+	class MyAssert
+	{
+	public:
+		static void myRunTimeAssert(bool condition, const std::string& msg)
+		{
+			if (!condition)
+			{
+				int* ptr = nullptr;
+				*ptr = 0;
+			}
+		}
+	};
+
 	class DataSet;
 	class utils
 	{

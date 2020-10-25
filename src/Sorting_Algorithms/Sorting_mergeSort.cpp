@@ -700,9 +700,8 @@ namespace mm {
 				bool secondSetOver = counterSecondSet > end;
 				if (firstSetOver && qObj.empty())
 					break;
-				if (!secondSetOver &&
-					qObj.empty()
-					&& (obj[counterSecondSet] < obj[k]
+				if (!secondSetOver
+					&& ((qObj.empty() && obj[counterSecondSet] < obj[k])
 						|| (!qObj.empty() && obj[counterSecondSet] < qObj.front()))
 					) //This condition DOES NOT lose stability
 				{

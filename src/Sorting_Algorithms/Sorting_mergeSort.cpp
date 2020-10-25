@@ -314,6 +314,9 @@ namespace mm {
 			obj[position] = temp;
 
 			findRangeEnd = position - 1;
+
+			if (k == 0)
+				break;
 		}
 	}
 
@@ -385,6 +388,9 @@ namespace mm {
 				obj[position] = temp;
 
 				findRangeEnd = position - 1;
+
+				if (k == 0)
+					break;
 			}
 		}
 		else
@@ -503,7 +509,7 @@ namespace mm {
 		//(First set can never be smaller, but lets implement generic algo to handle both cases)
 		int firstSetSize = secondSetStart - firstSetStart;
 		int secondSetSize = end - secondSetStart + 1;
-		if (firstSetSize < secondSetSize)
+		if (firstSetSize <= secondSetSize)
 		{
 			//Create a copy of first set
 			DataSet copy(obj.getCopy(firstSetStart, secondSetStart - 1));
@@ -528,16 +534,26 @@ namespace mm {
 			//Need to begin from end
 			size_t counterFirstSet = secondSetStart - 1;
 			size_t counterSecondSet = copy.getSize() - 1;
+			bool firstSetOver = false;
 			for (size_t k = end; k >= firstSetStart; k--)
 			{
-				bool firstSetOver = counterFirstSet < firstSetStart;
-				bool secondSetOver = counterSecondSet < 0;
-				if (secondSetOver)
-					break;
+				//bool firstSetOver = counterFirstSet < firstSetStart;
 				if (!firstSetOver && copy[counterSecondSet] < obj[counterFirstSet]) //This condition DOES NOT lose stability
-					obj[k] = obj[counterFirstSet--];
+				{
+					obj[k] = obj[counterFirstSet];
+					if (counterFirstSet == 0 || --counterFirstSet < firstSetStart)
+						firstSetOver = true;
+				}
 				else
-					obj[k] = copy[counterSecondSet--];
+				{
+					obj[k] = copy[counterSecondSet];
+					if (counterSecondSet > 0)
+						--counterSecondSet;
+					else
+						break;
+				}
+
+				
 			}
 		}
 	}
@@ -576,7 +592,7 @@ namespace mm {
 		//(First set can never be smaller, but lets implement generic algo to handle both cases)
 		int firstSetSize = secondSetStart - firstSetStart;
 		int secondSetSize = end - secondSetStart + 1;
-		if (firstSetSize < secondSetSize)
+		if (firstSetSize <= secondSetSize)
 		{
 			//Create a copy of first set
 			DataSet copy(obj.getCopy(firstSetStart, secondSetStart - 1));
@@ -609,24 +625,32 @@ namespace mm {
 			//Need to begin from end
 			size_t counterFirstSet = secondSetStart - 1;
 			size_t counterSecondSet = copy.getSize() - 1;
+			bool firstSetOver = false;
 			for (size_t k = end; k >= firstSetStart; k--)
 			{
-				bool firstSetOver = counterFirstSet < firstSetStart;
-				bool secondSetOver = counterSecondSet < 0;
-				if (secondSetOver)
-					break;
+				//bool firstSetOver = counterFirstSet < firstSetStart;
+				//bool secondSetOver = counterSecondSet < 0;
+				//if (secondSetOver)
+				//	break;
 				if (!firstSetOver && copy[counterSecondSet] < obj[counterFirstSet]) //This condition DOES NOT lose stability
 				{
 					if (k != counterFirstSet)
 						obj[k] = obj[counterFirstSet];
-					counterFirstSet--;
+					if (counterFirstSet == 0 || --counterFirstSet < firstSetStart)
+						firstSetOver = true;
 				}
 				else
 				{
 					if (k != (counterSecondSet + secondSetStart))
 						obj[k] = copy[counterSecondSet];
-					counterSecondSet--;
+					if (counterSecondSet > 0)
+						--counterSecondSet;
+					else
+						break;
 				}
+
+				if (k == 0)
+					break;
 			}
 		}
 	}
@@ -667,7 +691,7 @@ namespace mm {
 
 		size_t firstSetSize = secondSetStart - firstSetStart;
 		size_t secondSetSize = end - secondSetStart + 1;
-		if (firstSetSize < secondSetSize)
+		if (firstSetSize <= secondSetSize)
 		{
 			size_t counterSecondSet = secondSetStart;
 			for (size_t k = firstSetStart; k <= end; k++)
@@ -704,9 +728,10 @@ namespace mm {
 		{
 			//Need to begin from end
 			size_t counterFirstSet = secondSetStart - 1;
+			bool firstSetOver = false;
 			for (size_t k = end; k >= firstSetStart; k--)
 			{
-				bool firstSetOver = counterFirstSet < firstSetStart;
+				//bool firstSetOver = counterFirstSet < firstSetStart;
 				bool secondSetOver = k < secondSetStart;
 				if (secondSetOver && qObj.empty())
 					break;
@@ -718,7 +743,10 @@ namespace mm {
 					//backup object of first set into queue
 					if (!secondSetOver)
 						qObj.push(obj[k]);
-					obj[k] = obj[counterFirstSet--];
+					obj[k] = obj[counterFirstSet];
+
+					if (counterFirstSet == 0 || --counterFirstSet < firstSetStart)
+						firstSetOver = true;
 				}
 				else
 				{
@@ -731,6 +759,9 @@ namespace mm {
 						qObj.pop();
 					}
 				}
+
+				if (k == 0)
+					break;
 			}
 		}
 	}

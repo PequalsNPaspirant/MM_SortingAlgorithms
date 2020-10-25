@@ -24,7 +24,7 @@ namespace mm {
 
 	//--------------------------------------------------------------------------------------------
 // Global Configurtion
-	bool displayOnScreen = true;
+	bool displayOnScreen = false;
 	const string reportLocation = "C:\\@_Programming\\";
 
 	bool writeToTextFile = true;
@@ -1093,9 +1093,9 @@ namespace mm {
 	void utils::printDebugInformation(const string& message, const DataSet& currentDataSet, const string& algoName, const DataSet& origDataSet)
 	{
 		//Print entire array if not sorted
-		cout << "\n\n" << message << "\n";
-		cout << "\nAlgorithm Name : " << algoName;
-		cout << "\nData Set Name : " << currentDataSet.getName();
+		cout << "\n\n" << message;
+		cout << " | Algorithm Name : " << algoName;
+		cout << " | Data Set Name : " << currentDataSet.getName();
 
 		cout << "\nOriginal Data Set: ";
 		int dataSize = currentDataSet.getSize();
@@ -1112,7 +1112,7 @@ namespace mm {
 			if (j < dataSize - 1)
 				cout << ", ";
 		}
-		cout << "\n\n";
+		//cout << "\n\n";
 
 		MyAssert::myRunTimeAssert(false, message);
 	}

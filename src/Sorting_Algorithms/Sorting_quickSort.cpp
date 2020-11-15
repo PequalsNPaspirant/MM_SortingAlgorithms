@@ -1001,12 +1001,12 @@ namespace mm {
 		}
 		else
 		{
-			DataSet set("Temp", PivotIndices.size());
-			for (size_t i = 0; i < PivotIndices.size(); i++)
+			DataSet set("Temp", static_cast<unsigned int>(PivotIndices.size()));
+			for (unsigned int i = 0; i < PivotIndices.size(); i++)
 				set[i] = obj[PivotIndices[i]];
 
 			QuickSortMultiPivot_2Pivots(set);
-			for (size_t i = 0; i < PivotIndices.size(); i++)
+			for (unsigned int i = 0; i < PivotIndices.size(); i++)
 				obj[PivotIndices[i]] = set[i];
 		}
 
@@ -1069,7 +1069,7 @@ namespace mm {
 		vector<int> walls;
 		makeUnstableMultiPivotPartition1(obj, startIndex, endIndex, walls, numberOfPivots);
 
-		int numberOfWalls = walls.size();
+		int numberOfWalls = static_cast<int>(walls.size());
 
 		int i = 0;
 		for (; i < numberOfWalls / 2; i++)

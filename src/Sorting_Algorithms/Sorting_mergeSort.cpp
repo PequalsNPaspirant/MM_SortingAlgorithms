@@ -14,11 +14,11 @@ namespace mm {
 	// MergeSort - TopDownMerge 1 - space complexity O(n)
 	//=======================================================================================
 
-	void TopDownMerge1(DataSet& firstSet, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end, DataSet& secondSet)
+	void TopDownMerge1(DataSet& firstSet, int firstSetStart, int secondSetStart, int end, DataSet& secondSet)
 	{
-		size_t counterFirstSet = firstSetStart;
-		size_t counterSecondSet = secondSetStart;
-		for (size_t k = firstSetStart; k <= end; k++)
+		int counterFirstSet = firstSetStart;
+		int counterSecondSet = secondSetStart;
+		for (int k = firstSetStart; k <= end; k++)
 		{
 			bool firstSetOver = counterFirstSet > secondSetStart - 1;
 			bool secondSetOver = counterSecondSet > end;
@@ -35,7 +35,7 @@ namespace mm {
 		if (start == end)
 			return;
 
-		int firstSetEnd = std::trunc((start + end) / 2.0);
+		int firstSetEnd = static_cast<int>(std::trunc((start + end) / 2.0));
 		TopDownSplit1(secondSet, start, firstSetEnd, firstSet);
 		int secondSetStart = firstSetEnd + 1;
 		TopDownSplit1(secondSet, secondSetStart, end, firstSet);
@@ -54,17 +54,17 @@ namespace mm {
 	//We can avoid toggling of arrays here, so algorithm is cleaner
 	//=======================================================================================
 
-	void TopDownMerge2(DataSet& obj, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end)
+	void TopDownMerge2(DataSet& obj, int firstSetStart, int secondSetStart, int end)
 	{
 		//No need to check smaller size set because both sets are of same size
 		//Create a copy of first set
 		DataSet copy(obj.getCopy(firstSetStart, secondSetStart - 1));
 
-		size_t CounterFirstSet = 0;
-		size_t CounterSecondSet = secondSetStart;
-		for (size_t k = firstSetStart; k <= end; k++)
+		int CounterFirstSet = 0;
+		int CounterSecondSet = secondSetStart;
+		for (int k = firstSetStart; k <= end; k++)
 		{
-			bool firstSetOver = CounterFirstSet >= copy.getSize();
+			bool firstSetOver = CounterFirstSet >= static_cast<int>(copy.getSize());
 			bool secondSetOver = CounterSecondSet > end;
 			if (firstSetOver)
 				break;
@@ -80,7 +80,7 @@ namespace mm {
 		if (start == end)
 			return;
 
-		int firstSetEnd = std::trunc((start + end) / 2.0);
+		int firstSetEnd = static_cast<int>(std::trunc((start + end) / 2.0));
 		TopDownSplit2(obj, start, firstSetEnd);
 		int secondSetStart = firstSetEnd + 1;
 		TopDownSplit2(obj, secondSetStart, end);
@@ -98,18 +98,18 @@ namespace mm {
 	//Further optimization - avoid assignments if the objects are same
 	//=======================================================================================
 
-	void TopDownMerge3(DataSet& obj, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end)
+	void TopDownMerge3(DataSet& obj, int firstSetStart, int secondSetStart, int end)
 	{
 		//No need to check smaller size set because both sets are ALMOST of same size. 
 		//(In case of odd number of elements in set, two set can differ in size by one)
 		//Create a copy of first set
 		DataSet copy(obj.getCopy(firstSetStart, secondSetStart - 1));
 
-		size_t counterFirstSet = 0;
-		size_t counterSecondSet = secondSetStart;
-		for (size_t k = firstSetStart; k <= end; k++)
+		int counterFirstSet = 0;
+		int counterSecondSet = secondSetStart;
+		for (int k = firstSetStart; k <= end; k++)
 		{
-			bool firstSetOver = counterFirstSet >= copy.getSize();
+			bool firstSetOver = counterFirstSet >= static_cast<int>(copy.getSize());
 			bool secondSetOver = counterSecondSet > end;
 			if (firstSetOver)
 				break;
@@ -133,7 +133,7 @@ namespace mm {
 		if (start == end)
 			return;
 
-		int firstSetEnd = std::trunc((start + end) / 2.0);
+		int firstSetEnd = static_cast<int>(std::trunc((start + end) / 2.0));
 		TopDownSplit3(obj, start, firstSetEnd);
 		int secondSetStart = firstSetEnd + 1;
 		TopDownSplit3(obj, secondSetStart, end);
@@ -151,15 +151,15 @@ namespace mm {
 	//Further optimization - avoid assignments if the objects are same
 	//=======================================================================================
 
-	void TopDownMerge4(DataSet& obj, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end)
+	void TopDownMerge4(DataSet& obj, int firstSetStart, int secondSetStart, int end)
 	{
 		//No need to check smaller size set because both sets are ALMOST of same size. 
 		//(In case of odd number of elements in set, two set can differ in size by one)
 		//Create a queue to keep the objects tempororily aside
 		std::queue<Object> qObj;
 
-		size_t counterSecondSet = secondSetStart;
-		for (size_t k = firstSetStart; k <= end; k++)
+		int counterSecondSet = secondSetStart;
+		for (int k = firstSetStart; k <= end; k++)
 		{
 			bool firstSetOver = k > secondSetStart - 1;
 			bool secondSetOver = counterSecondSet > end;
@@ -194,7 +194,7 @@ namespace mm {
 		if (start == end)
 			return;
 
-		int firstSetEnd = std::trunc((start + end) / 2.0);
+		int firstSetEnd = static_cast<int>(std::trunc((start + end) / 2.0));
 		TopDownSplit4(obj, start, firstSetEnd);
 		int secondSetStart = firstSetEnd + 1;
 		TopDownSplit4(obj, secondSetStart, end);
@@ -212,13 +212,13 @@ namespace mm {
 	//Further optimization - avoid assignments if the objects are same
 	//=======================================================================================
 
-	void TopDownMerge5(DataSet& obj, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end)
+	void TopDownMerge5(DataSet& obj, int firstSetStart, int secondSetStart, int end)
 	{
 		//No need to check smaller size set because both sets are ALMOST of same size. 
 		//(In case of odd number of elements in set, two set can differ in size by one)
 
 		int findRangeStart = firstSetStart;
-		for (size_t k = secondSetStart; k <= end; k++)
+		for (int k = secondSetStart; k <= end; k++)
 		{
 			int findRangeEnd = k - 1;
 			int position;
@@ -255,7 +255,7 @@ namespace mm {
 		if (start == end)
 			return;
 
-		int firstSetEnd = std::trunc((start + end) / 2.0);
+		int firstSetEnd = static_cast<int>(std::trunc((start + end) / 2.0));
 		TopDownSplit5(obj, start, firstSetEnd);
 		int secondSetStart = firstSetEnd + 1;
 		TopDownSplit5(obj, secondSetStart, end);
@@ -273,13 +273,13 @@ namespace mm {
 	//Further optimization - avoid assignments if the objects are same
 	//=======================================================================================
 
-	void TopDownMerge6(DataSet& obj, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end)
+	void TopDownMerge6(DataSet& obj, int firstSetStart, int secondSetStart, int end)
 	{
 		//No need to check smaller size set because both sets are ALMOST of same size. 
 		//(In case of odd number of elements in set, two set can differ in size by one)
 
 		int findRangeEnd = end;
-		for (size_t k = secondSetStart - 1; k >= firstSetStart; k--)
+		for (int k = secondSetStart - 1; k >= firstSetStart; k--)
 		{
 			int findRangeStart = k + 1;
 			int position;
@@ -325,7 +325,7 @@ namespace mm {
 		if (start == end)
 			return;
 
-		int firstSetEnd = std::trunc((start + end) / 2.0);
+		int firstSetEnd = static_cast<int>(std::trunc((start + end) / 2.0));
 		TopDownSplit6(obj, start, firstSetEnd);
 		int secondSetStart = firstSetEnd + 1;
 		TopDownSplit6(obj, secondSetStart, end);
@@ -343,7 +343,7 @@ namespace mm {
 	//Further optimization - avoid assignments if the objects are same
 	//=======================================================================================
 
-	void TopDownMerge7(DataSet& obj, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end)
+	void TopDownMerge7(DataSet& obj, int firstSetStart, int secondSetStart, int end)
 	{
 		//No need to check smaller size set because both sets are ALMOST of same size. 
 		//(In case of odd number of elements in set, two set can differ in size by one)
@@ -353,7 +353,7 @@ namespace mm {
 		if (firstSetSize < secondSetSize)
 		{
 			int findRangeEnd = end;
-			for (size_t k = secondSetStart - 1; k >= firstSetStart; k--)
+			for (int k = secondSetStart - 1; k >= firstSetStart; k--)
 			{
 				int findRangeStart = k + 1;
 				int position;
@@ -396,7 +396,7 @@ namespace mm {
 		else
 		{
 			int findRangeStart = firstSetStart;
-			for (size_t k = secondSetStart; k <= end; k++)
+			for (int k = secondSetStart; k <= end; k++)
 			{
 				int findRangeEnd = k - 1;
 				int position;
@@ -434,7 +434,7 @@ namespace mm {
 		if (start == end)
 			return;
 
-		int firstSetEnd = std::trunc((start + end) / 2.0);
+		int firstSetEnd = static_cast<int>(std::trunc((start + end) / 2.0));
 		TopDownSplit7(obj, start, firstSetEnd);
 		int secondSetStart = firstSetEnd + 1;
 		TopDownSplit7(obj, secondSetStart, end);
@@ -452,7 +452,7 @@ namespace mm {
 	// MergeSort - BottomUpMerge 1
 	//=======================================================================================
 
-	void BottomUpMerge1(DataSet& firstSet, const unsigned int start, const unsigned int middle, const unsigned int end, DataSet& secondSet)
+	void BottomUpMerge1(DataSet& firstSet, int start, int middle, int end, DataSet& secondSet)
 	{
 		//This is same as TopDownMerge
 		TopDownMerge1(firstSet, start, middle, end, secondSet);
@@ -503,7 +503,7 @@ namespace mm {
 	// MergeSort - BottomUpMerge 2 - space complexity O(n/2)
 	//=======================================================================================
 
-	void BottomUpMerge2(DataSet& obj, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end)
+	void BottomUpMerge2(DataSet& obj, int firstSetStart, int secondSetStart, int end)
 	{
 		//NEED to check smaller size set because both sets are NOT of same size. Second set will be smaller in this case. 
 		//(First set can never be smaller, but lets implement generic algo to handle both cases)
@@ -513,11 +513,11 @@ namespace mm {
 		{
 			//Create a copy of first set
 			DataSet copy(obj.getCopy(firstSetStart, secondSetStart - 1));
-			size_t counterFirstSet = 0;
-			size_t counterSecondSet = secondSetStart;
-			for (size_t k = firstSetStart; k <= end; k++)
+			int counterFirstSet = 0;
+			int counterSecondSet = secondSetStart;
+			for (int k = firstSetStart; k <= end; k++)
 			{
-				bool firstSetOver = counterFirstSet >= copy.getSize();
+				bool firstSetOver = counterFirstSet >= static_cast<int>(copy.getSize());
 				bool secondSetOver = counterSecondSet > end;
 				if (firstSetOver)
 					break;
@@ -532,10 +532,10 @@ namespace mm {
 			//Create a copy of second set
 			DataSet copy(obj.getCopy(secondSetStart, end));
 			//Need to begin from end
-			size_t counterFirstSet = secondSetStart - 1;
-			size_t counterSecondSet = copy.getSize() - 1;
+			int counterFirstSet = secondSetStart - 1;
+			int counterSecondSet = copy.getSize() - 1;
 			bool firstSetOver = false;
-			for (size_t k = end; k >= firstSetStart; k--)
+			for (int k = end; k >= firstSetStart; k--)
 			{
 				//bool firstSetOver = counterFirstSet < firstSetStart;
 				if (!firstSetOver && copy[counterSecondSet] < obj[counterFirstSet]) //This condition DOES NOT lose stability
@@ -586,7 +586,7 @@ namespace mm {
 	//Further optimization - avoid assignments if the objects are same
 	//=======================================================================================
 
-	void BottomUpMerge3(DataSet& obj, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end)
+	void BottomUpMerge3(DataSet& obj, int firstSetStart, int secondSetStart, int end)
 	{
 		//NEED to check smaller size set because both sets are NOT of same size. Second set will be smaller in this case. 
 		//(First set can never be smaller, but lets implement generic algo to handle both cases)
@@ -596,11 +596,11 @@ namespace mm {
 		{
 			//Create a copy of first set
 			DataSet copy(obj.getCopy(firstSetStart, secondSetStart - 1));
-			size_t counterFirstSet = 0;
-			size_t counterSecondSet = secondSetStart;
-			for (size_t k = firstSetStart; k <= end; k++)
+			int counterFirstSet = 0;
+			int counterSecondSet = secondSetStart;
+			for (int k = firstSetStart; k <= end; k++)
 			{
-				bool firstSetOver = counterFirstSet >= copy.getSize();
+				bool firstSetOver = counterFirstSet >= static_cast<int>(copy.getSize());
 				bool secondSetOver = counterSecondSet > end;
 				if (firstSetOver)
 					break;
@@ -623,10 +623,10 @@ namespace mm {
 			//Create a copy of second set
 			DataSet copy(obj.getCopy(secondSetStart, end));
 			//Need to begin from end
-			size_t counterFirstSet = secondSetStart - 1;
-			size_t counterSecondSet = copy.getSize() - 1;
+			int counterFirstSet = secondSetStart - 1;
+			int counterSecondSet = copy.getSize() - 1;
 			bool firstSetOver = false;
-			for (size_t k = end; k >= firstSetStart; k--)
+			for (int k = end; k >= firstSetStart; k--)
 			{
 				//bool firstSetOver = counterFirstSet < firstSetStart;
 				//bool secondSetOver = counterSecondSet < 0;
@@ -682,19 +682,19 @@ namespace mm {
 	//Further optimization - avoid assignments if the objects are same
 	//=======================================================================================
 
-	void BottomUpMerge4(DataSet& obj, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end)
+	void BottomUpMerge4(DataSet& obj, int firstSetStart, int secondSetStart, int end)
 	{
 		//NEED to check smaller size set because both sets are NOT of same size. Second set will be smaller in this case. 
 		//(First set can never be smaller, but lets implement generic algo to handle both cases)
 		//Create a queue to keep the objects tempororily aside
 		std::queue<Object> qObj;
 
-		size_t firstSetSize = secondSetStart - firstSetStart;
-		size_t secondSetSize = end - secondSetStart + 1;
+		int firstSetSize = secondSetStart - firstSetStart;
+		int secondSetSize = end - secondSetStart + 1;
 		if (firstSetSize <= secondSetSize)
 		{
-			size_t counterSecondSet = secondSetStart;
-			for (size_t k = firstSetStart; k <= end; k++)
+			int counterSecondSet = secondSetStart;
+			for (int k = firstSetStart; k <= end; k++)
 			{
 				bool firstSetOver = k > secondSetStart - 1;
 				bool secondSetOver = counterSecondSet > end;
@@ -726,9 +726,9 @@ namespace mm {
 		else
 		{
 			//Need to begin from end
-			size_t counterFirstSet = secondSetStart - 1;
+			int counterFirstSet = secondSetStart - 1;
 			bool firstSetOver = false;
-			for (size_t k = end; k >= firstSetStart; k--)
+			for (int k = end; k >= firstSetStart; k--)
 			{
 				//bool firstSetOver = counterFirstSet < firstSetStart;
 				bool secondSetOver = k < secondSetStart;
@@ -793,7 +793,7 @@ namespace mm {
 	//Further optimization - avoid assignments if the objects are same
 	//=======================================================================================
 
-	void BottomUpMerge5(DataSet& obj, const unsigned int firstSetStart, const unsigned int secondSetStart, const unsigned int end)
+	void BottomUpMerge5(DataSet& obj, int firstSetStart, int secondSetStart, int end)
 	{
 		TopDownMerge7(obj, firstSetStart, secondSetStart, end);
 	}
@@ -840,7 +840,7 @@ namespace mm {
 		bool noToggle = int(ceil(log2(runBoundaries.size()))) % 2 != 0;
 		while (runBoundaries.size() > 1)
 		{
-			for (size_t i = 0; i < runBoundaries.size();)
+			for (int i = 0; i < runBoundaries.size();)
 			{
 				int firstSetStart = runBoundaries[i];
 				int secondSetStart = i + 1 < runBoundaries.size() ? runBoundaries[i + 1] : size - 1;

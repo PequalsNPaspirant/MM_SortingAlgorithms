@@ -15,7 +15,7 @@ namespace mm {
 	{
 		int size = obj.getSize();
 		if (size == 1) return;
-		int gapSeqSize = gapSequence.size();
+		int gapSeqSize = static_cast<int>(gapSequence.size());
 		MyAssert::myRunTimeAssert(gapSequence[0] == 1, "Gap sequence must start with 1");
 		for (int gapIndex = gapSeqSize - 1; gapIndex >= 0; --gapIndex)
 		{
@@ -55,7 +55,7 @@ namespace mm {
 	{
 		int size = obj.getSize();
 		if (size == 1) return;
-		int gapSeqSize = gapSequence.size();
+		int gapSeqSize = static_cast<int>(gapSequence.size());
 		MyAssert::myRunTimeAssert(gapSequence[0] == 1, "Gap sequence must start with 1");
 		for (int gapIndex = gapSeqSize - 1; gapIndex >= 0; --gapIndex)
 		{

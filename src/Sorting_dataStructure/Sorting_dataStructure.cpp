@@ -8,6 +8,8 @@ using namespace std;
 #include "Timer/Timer_Timer.h"
 #include "Maths/Maths_Permutations.h"
 
+#define mm_assert(expr, msg) assert(expr)
+
 namespace mm {
 
 	//==================== class SingletonCounters
@@ -154,8 +156,8 @@ namespace mm {
 		}
 	}
 
-	DataSet::DataSet(string name, initializer_list<int> list)
-		:m_dataSetName(name), m_data(nullptr), m_size(list.size())
+	DataSet::DataSet(string name, const initializer_list<int>& list)
+		:m_dataSetName(name), m_data(nullptr), m_size(static_cast<unsigned int>(list.size()))
 	{
 		if (m_size > 0)
 		{
@@ -171,8 +173,8 @@ namespace mm {
 		}
 	}
 
-	DataSet::DataSet(string name, vector<int> vec)
-		:m_dataSetName(name), m_data(nullptr), m_size(vec.size())
+	DataSet::DataSet(string name, const vector<int>& vec)
+		:m_dataSetName(name), m_data(nullptr), m_size(static_cast<unsigned int>(vec.size()))
 	{
 		if (m_size > 0)
 		{
@@ -254,21 +256,21 @@ namespace mm {
 			setOriginalPositions();
 		}
 		else
-			assert(false, "Size is already set");
+			mm_assert(false, "Size is already set");
 	}
 	const unsigned int DataSet::getSize() const { return m_size; }
 
 	Object& DataSet::operator[](const unsigned int index)
 	{
 		SingletonCounters::incrementArrayAccess();
-		assert(index < m_size, "Size overflow");
+		mm_assert(index < m_size, "Size overflow");
 		return m_data[index];
 	}
 
 	const Object& DataSet::operator[](const unsigned int index) const
 	{
 		SingletonCounters::incrementArrayAccess();
-		assert(index < m_size, "Size overflow");
+		mm_assert(index < m_size, "Size overflow");
 		return m_data[index];
 	}
 
@@ -308,7 +310,7 @@ namespace mm {
 
 	void DataSet::setOriginalPositions()
 	{
-		for (size_t i = 0; i < m_size; i++)
+		for (unsigned int i = 0; i < m_size; i++)
 			m_data[i].setOriginalPosition(i);
 	}
 

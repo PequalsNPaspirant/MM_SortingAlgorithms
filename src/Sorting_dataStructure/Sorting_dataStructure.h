@@ -78,8 +78,8 @@ namespace mm {
 	{
 	public:
 		DataSet(string name, const unsigned int size = 0);
-		DataSet(string name, initializer_list<int> list);
-		DataSet(string name, vector<int> vec);
+		DataSet(string name, const initializer_list<int>& list);
+		DataSet(string name, const vector<int>& vec);
 		~DataSet();
 
 		//Transfer ownership

@@ -37,7 +37,7 @@ namespace mm {
 	// (2 + 1) / 2 - 1 = 3 / 2 - 1 = 1 - 1 = 0
 
 	int getParentIndex(int index) {
-		return floor((index - 1) / 2.0); // returns -1 for iIndex = 0
+		return static_cast<int>(floor((index - 1) / 2.0)); // returns -1 for iIndex = 0
 	}
 
 	int getParentIndex2(int index) {
@@ -57,7 +57,7 @@ namespace mm {
 
 	int getLevel(int index) //level starts from zero
 	{
-		return floor(log(index + 1));
+		return static_cast<int>(floor(log(index + 1)));
 	}
 
 	// sift up Functions
@@ -398,12 +398,12 @@ namespace mm {
 	int leafSearch(DataSet& obj, int index)
 	{
 		int retVal = -1;
-		size_t leftChildIndex = getLeftChildIndex(index);
-		size_t rightChildIndex = getRightChildIndex(index); //OR rightChildIndex = leftChildIndex + 1
-		if (leftChildIndex < obj.getSize())
+		int leftChildIndex = getLeftChildIndex(index);
+		int rightChildIndex = getRightChildIndex(index); //OR rightChildIndex = leftChildIndex + 1
+		if (leftChildIndex < static_cast<int>(obj.getSize()))
 		{
 			retVal = leftChildIndex;
-			if (rightChildIndex < obj.getSize())
+			if (rightChildIndex < static_cast<int>(obj.getSize()))
 			{
 				if (obj[leftChildIndex] < obj[rightChildIndex])
 					retVal = rightChildIndex;

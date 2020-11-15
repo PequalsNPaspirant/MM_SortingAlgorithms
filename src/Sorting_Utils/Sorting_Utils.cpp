@@ -410,7 +410,7 @@ namespace mm {
 		}
 		catch (std::ofstream::failure &writeErr)
 		{
-			cout << "\nERROR: Can not open file: " << filename << endl;
+			cout << "\nERROR: Can not open file: " << filename << " Error: " << writeErr.what() << endl;
 		}
 		catch (...)
 		{
@@ -588,7 +588,8 @@ namespace mm {
 		}
 
 		//Generate random number sets of different sizes from currentDataSize to dataSize
-		srand(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+		unsigned int init = static_cast<unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+		srand(init);
 		int backup = currentDataSize;
 		for (currentDataSize = currentDataSize + 1; currentDataSize <= dataSize; currentDataSize++)
 		{
@@ -659,7 +660,7 @@ namespace mm {
 				dataSet[i].setVal(i + 1);
 			//Swap just 10% of them
 			double percentage = 10;
-			int increment = dataSize / (dataSize * percentage / 100);
+			int increment = static_cast<int>(dataSize / (dataSize * percentage / 100));
 			for (int i = 0; i < dataSize; i += increment)
 			{
 				int coindex = (i + 1) + rand() % (dataSize - (i + 1)); //Get random co-index in range [i+1, dataSize) 
@@ -678,7 +679,7 @@ namespace mm {
 		// Prepare data sets for average cases
 
 		//Generate random numbers	
-		srand(std::chrono::high_resolution_clock::now().time_since_epoch().count());
+		srand(static_cast<unsigned int>(std::chrono::high_resolution_clock::now().time_since_epoch().count()));
 		for (int i = 0; i < uniqueRandomNumberSets; i++)
 		{
 			DataSet dataSet("Unique random number set " + to_string(i + 1), dataSize);
@@ -793,8 +794,8 @@ namespace mm {
 	//Default argument should be seen by compiler before calling function ---- Not necessarily :)  ---- This is wrong comment
 	void CompleteReport::sortData(vector<DataSet>& refDataSet, bool calcAverage /*= false*/)
 	{
-		const int totalSortingAlgorithms = m_sortingAlgorithms.size();
-		const int dataSize = refDataSet.size();
+		const int totalSortingAlgorithms = static_cast<int>(m_sortingAlgorithms.size());
+		const int dataSize = static_cast<int>(refDataSet.size());
 		cout << "Total test cases: " << dataSize << " Total Algorithms: " << totalSortingAlgorithms << endl;
 		for (int i = 0; i < dataSize; i++)
 		{
@@ -840,7 +841,7 @@ namespace mm {
 
 	void CompleteReport::createSummaryReport()
 	{
-		const int totalSortingAlgorithms = m_sortingAlgorithms.size();
+		const int totalSortingAlgorithms = static_cast<int>(m_sortingAlgorithms.size());
 		cout << "\n\n" << Timer::getCurrentLocalTimeInNanoSeconds() << " TASK: Calculating average and sorting average data ...\n";
 		for (int i = 0; i < totalSortingAlgorithms; i++)
 		{
@@ -854,7 +855,7 @@ namespace mm {
 		cout << "\n\n" << Timer::getCurrentLocalTimeInNanoSeconds() << " TASK: Displaying on Screen ...\n";
 
 		//const int totalSortingAlgorithms = m_sortingAlgorithms.size();
-		const int totalRecords = m_sortingPerformance.size();
+		const int totalRecords = static_cast<int>(m_sortingPerformance.size());
 		for (int i = 0; i < totalRecords; i++)
 		{
 			//if (i % totalSortingAlgorithms == 0)
@@ -868,7 +869,7 @@ namespace mm {
 	{
 		cout << "\n\nSummary Report:----------------------------------------------------------------------------------------------------------\n";
 
-		const int totalSortingAlgorithms = m_sortingAlgorithms.size();
+		const int totalSortingAlgorithms = static_cast<int>(m_sortingAlgorithms.size());
 		for (int i = 0; i < totalSortingAlgorithms; i++)
 		{
 			m_sortingAlgorithms[i].printAveragePerformance();
@@ -886,8 +887,8 @@ namespace mm {
 		string outputString;
 		if (outputFile.is_open())
 		{
-			const int totalSortingAlgorithms = m_sortingAlgorithms.size();
-			const int totalRecords = m_sortingPerformance.size();
+			const int totalSortingAlgorithms = static_cast<int>(m_sortingAlgorithms.size());
+			const int totalRecords = static_cast<int>(m_sortingPerformance.size());
 			for (int i = 0; i < totalRecords; i++)
 			{
 				if (i % totalSortingAlgorithms == 0)
@@ -910,7 +911,7 @@ namespace mm {
 		if (outputFile.is_open())
 		{
 			string title("\n\nSummary Report:----------------------------------------------------------------------------------------------------------\n");
-			const int totalSortingAlgorithms = m_sortingAlgorithms.size();
+			const int totalSortingAlgorithms = static_cast<int>(m_sortingAlgorithms.size());
 			outputFile.write(title.c_str(), title.length());
 			for (int i = 0; i < totalSortingAlgorithms; i++)
 			{
@@ -932,8 +933,8 @@ namespace mm {
 		CSVWriter csvReport(fileName, true);
 		string outputString;
 
-		const int totalSortingAlgorithms = m_sortingAlgorithms.size();
-		const int totalRecords = m_sortingPerformance.size();
+		const int totalSortingAlgorithms = static_cast<int>(m_sortingAlgorithms.size());
+		const int totalRecords = static_cast<int>(m_sortingPerformance.size());
 
 		//Add column titles
 		csvReport.write("Data Sets Type,Data Set,");
@@ -971,7 +972,7 @@ namespace mm {
 		CSVWriter csvReport(fileName, true);
 		string outputString;
 
-		const int totalDataSets = m_randomDataSet.size();
+		const int totalDataSets = static_cast<int>(m_randomDataSet.size());
 
 		//Add Data Sets on first row
 		outputString.clear();
@@ -980,7 +981,7 @@ namespace mm {
 		{
 			const unsigned int size = m_randomDataSet[i].getSize();
 			outputString = "\"";
-			for (size_t j = 0; j < size; j++)
+			for (unsigned int j = 0; j < size; j++)
 			{
 				outputString += to_string(m_randomDataSet[i][j].getVal());
 				if (j < size) outputString += ",";
@@ -1001,7 +1002,7 @@ namespace mm {
 			if (i < totalDataSets) outputString += ",";
 		}
 
-		const int totalSortingAlgorithms = m_sortingAlgorithms.size();
+		const int totalSortingAlgorithms = static_cast<int>(m_sortingAlgorithms.size());
 		//const int totalSortingPerformances = m_sortingPerformance.size();
 		//Add sorting performance numbers
 		for (int i = 0; i < totalSortingAlgorithms; i++)
@@ -1034,7 +1035,7 @@ namespace mm {
 		CSVWriter csvReport(fileName, true);
 		string outputString;
 
-		const int totalDataSets = m_randomDataSet.size();
+		const int totalDataSets = static_cast<int>(m_randomDataSet.size());
 
 		//Add Data Sets on first row
 		outputString.clear();
@@ -1043,7 +1044,7 @@ namespace mm {
 		{
 			const unsigned int size = m_randomDataSet[i].getSize();
 			outputString = "\"";
-			for (size_t j = 0; j < size; j++)
+			for (unsigned int j = 0; j < size; j++)
 			{
 				outputString += to_string(m_randomDataSet[i][j].getVal());
 				if (j < size) outputString += ",";
@@ -1064,7 +1065,7 @@ namespace mm {
 			if (i < totalDataSets) outputString += ",";
 		}
 
-		const int totalSortingAlgorithms = m_sortingAlgorithms.size();
+		const int totalSortingAlgorithms = static_cast<int>(m_sortingAlgorithms.size());
 		//const int totalSortingPerformances = m_sortingPerformance.size();
 		//Add sorting performance numbers
 		for (int i = 0; i < totalSortingAlgorithms; i++)

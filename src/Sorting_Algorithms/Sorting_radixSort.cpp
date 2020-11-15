@@ -71,7 +71,7 @@ namespace mm {
 	void CountSort_t1(DataSet& obj, int base, int LSDPosition)
 	{
 		int size = obj.getSize();
-		int currentPositionVal = pow(base, LSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, LSDPosition));
 		std::vector<int> count(base, 0);
 		// Store count of occurrences in count[]
 		for (int i = 0; i < size; i++)
@@ -116,7 +116,7 @@ namespace mm {
 			int breakpoint = 0; ++breakpoint;
 		}
 
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		for (unsigned int LSDPosition = 0; LSDPosition < maxDigits; ++LSDPosition)
 		{
 			CountSort_t1(obj, base, LSDPosition);
@@ -131,7 +131,7 @@ namespace mm {
 	void CountSort_t2(DataSet& obj, int base, int LSDPosition)
 	{
 		int size = obj.getSize();
-		int currentPositionVal = pow(base, LSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, LSDPosition));
 		std::vector<int> count(base, 0);
 		// Store count of occurrences in count[]
 		for (int i = 0; i < size; i++)
@@ -172,7 +172,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		for (unsigned int LSDPosition = 0; LSDPosition < maxDigits; ++LSDPosition)
 		{
 			CountSort_t2(obj, base, LSDPosition);
@@ -188,7 +188,7 @@ namespace mm {
 	void CountSort_1(DataSet& input, int base, int LSDPosition, DataSet& output)
 	{
 		int size = input.getSize();
-		int currentPositionVal = pow(base, LSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, LSDPosition));
 		std::vector<int> count(base, 0);
 		// Store count of occurrences in count[]
 		for (int i = 0; i < size; i++)
@@ -219,7 +219,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		DataSet copy(obj.getCopy());
 		bool toggle = (maxDigits % 2 == 0);
 		for (unsigned int LSDPosition = 0; LSDPosition < maxDigits; ++LSDPosition)
@@ -241,7 +241,7 @@ namespace mm {
 	void CountSort_t3(DataSet& input, int base, int LSDPosition, DataSet& output)
 	{
 		int size = input.getSize();
-		int currentPositionVal = pow(base, LSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, LSDPosition));
 		std::vector<int> count(base, 0);
 		// Store count of occurrences in count[]
 		for (int i = 0; i < size; i++)
@@ -279,7 +279,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		DataSet copy(obj.getCopy());
 		bool toggle = (maxDigits % 2 == 0);
 		for (unsigned int LSDPosition = 0; LSDPosition < maxDigits; ++LSDPosition)
@@ -299,7 +299,7 @@ namespace mm {
 
 	void RadixSortLSD_t4_doesNotWork(DataSet& obj, int base, int LSDPosition)
 	{
-		int currentPositionVal = pow(base, LSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, LSDPosition));
 
 		// count digits
 		int size = obj.getSize();
@@ -357,7 +357,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		for (unsigned int LSDPosition = 0; LSDPosition < maxDigits; ++LSDPosition)
 		{
 			RadixSortLSD_t4_doesNotWork(obj, base, LSDPosition);
@@ -372,7 +372,7 @@ namespace mm {
 	void RadixSortLSD_t4(DataSet& obj, int base, int LSDPosition)
 	{
 		int size = obj.getSize();
-		int currentPositionVal = pow(base, LSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, LSDPosition));
 
 		std::queue<Object>* buckets = new std::queue<Object>[base];
 		// Store count of occurrences in count[]
@@ -407,7 +407,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		for (unsigned int LSDPosition = 0; LSDPosition < maxDigits; ++LSDPosition)
 		{
 			RadixSortLSD_t4(obj, base, LSDPosition);
@@ -422,7 +422,7 @@ namespace mm {
 
 	void RadixSortMSD_t1(DataSet& obj, int base, int lo, int hi, int MSDPosition)
 	{
-		int currentPositionVal = pow(base, MSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, MSDPosition));
 
 		// count digits
 		std::vector<int> count(base, 0);
@@ -489,7 +489,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		RadixSortMSD_t1(obj, base, 0, size - 1, maxDigits - 1);
 	}
 
@@ -501,7 +501,7 @@ namespace mm {
 
 	void RadixSortMSD_t2(DataSet& obj, int base, int lo, int hi, int MSDPosition)
 	{
-		int currentPositionVal = pow(base, MSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, MSDPosition));
 
 		// count digits
 		std::vector<int> count(base, 0);
@@ -564,7 +564,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		RadixSortMSD_t2(obj, base, 0, size - 1, maxDigits - 1);
 	}
 
@@ -575,7 +575,7 @@ namespace mm {
 
 	void RadixSortMSD_t3(DataSet& obj, int base, int lo, int hi, int MSDPosition)
 	{
-		int currentPositionVal = pow(base, MSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, MSDPosition));
 
 		// count digits
 		std::vector<int> count(base, 0);
@@ -637,7 +637,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		RadixSortMSD_t3(obj, base, 0, size - 1, maxDigits - 1);
 	}
 
@@ -649,7 +649,7 @@ namespace mm {
 
 	void RadixSortMSD_1(DataSet& obj, int base, int lo, int hi, int MSDPosition)
 	{
-		int currentPositionVal = pow(base, MSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, MSDPosition));
 
 		// count digits
 		std::vector<int> count(base, 0);
@@ -718,7 +718,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		RadixSortMSD_1(obj, base, 0, size - 1, maxDigits - 1);
 	}
 
@@ -729,7 +729,7 @@ namespace mm {
 
 	void RadixSortMSD_t4(DataSet& obj, int base, int lo, int hi, int MSDPosition)
 	{
-		int currentPositionVal = pow(base, MSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, MSDPosition));
 
 		// count digits
 		std::vector<int> count(base, 0);
@@ -778,7 +778,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		RadixSortMSD_t4(obj, base, 0, size - 1, maxDigits - 1);
 	}
 
@@ -790,7 +790,7 @@ namespace mm {
 	void RadixSortMSD_t5(DataSet& obj, int base, int lo, int hi, int MSDPosition)
 	{
 		//int size = obj.getSize();
-		int currentPositionVal = pow(base, MSDPosition);
+		int currentPositionVal = static_cast<int>(pow(base, MSDPosition));
 
 		std::queue<Object>* buckets = new std::queue<Object>[base];
 		// Store count of occurrences in count[]
@@ -806,7 +806,7 @@ namespace mm {
 		for (int i = 0; i < base; i++)
 		{
 			//Store bucket count before emptying it
-			count[i] = buckets[i].size();
+			count[i] = static_cast<int>(buckets[i].size());
 			while (!buckets[i].empty())
 			{
 				obj[counter++] = buckets[i].front();
@@ -841,7 +841,7 @@ namespace mm {
 			if (Object(max) < obj[i])
 				max = obj[i].getVal();
 		}
-		const unsigned int maxDigits = ceil(log(max + 1) / log(base));
+		const unsigned int maxDigits = static_cast<unsigned int>(ceil(log(max + 1) / log(base)));
 		RadixSortMSD_t5(obj, base, 0, size - 1, maxDigits - 1);
 	}
 

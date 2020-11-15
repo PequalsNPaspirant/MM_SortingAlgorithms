@@ -41,8 +41,8 @@ namespace mm {
 
 	void Permutations::generatePermutations(initializer_list<int> list, bool repeatition, vector< vector<int> >& output)
 	{
-		int totalVariables = list.size();
-		int totalPositions = list.size();
+		int totalVariables = static_cast<int>(list.size());
+		int totalPositions = static_cast<int>(list.size());
 
 		const int* begin = list.begin();
 		vector<int> source;
@@ -53,7 +53,7 @@ namespace mm {
 		{
 			//Arranging n variables in p position - first position can be filled-in in n ways, second also can be in n ways as repetition is allowed
 			//This all p potions can be filled-in in n * n * n * ... p times i.e. n ^ p
-			int totalSets = pow(totalVariables, totalPositions);
+			int totalSets = static_cast<int>(pow(totalVariables, totalPositions));
 			output.resize(totalSets);
 			for (int i = 0; i < totalSets; i++)
 			{
@@ -61,7 +61,7 @@ namespace mm {
 				for (int j = 0; j < totalPositions; j++)
 				{
 					int remainingPositions = totalPositions - j - 1;
-					int remainingPermutations = pow(totalVariables, remainingPositions);
+					int remainingPermutations = static_cast<int>(pow(totalVariables, remainingPositions));
 					int index = (i / remainingPermutations) % totalVariables;
 					currentSet[j] = source[index];
 				}
@@ -85,7 +85,7 @@ namespace mm {
 					int remainingVariables = totalVariables - j - 1;
 					int remainingPositions = totalPositions - j - 1;
 					int remainingPermutations = factorial(remainingPositions);
-					int currentVariables = tempSource.size();  //OR remainingVariables + 1
+					int currentVariables = static_cast<int>(tempSource.size());  //OR remainingVariables + 1
 					int index = (i / remainingPermutations) % currentVariables;
 					currentSet[j] = tempSource[index];
 					tempSource.erase(tempSource.begin() + index);
@@ -134,8 +134,8 @@ namespace mm {
 
 	void Permutations::generatePermutationsUsingRecursion(initializer_list<int> list, bool repeatition, vector< vector<int> >& output)
 	{
-		int totalVariables = list.size();
-		int totalPositions = list.size();
+		int totalVariables = static_cast<int>(list.size());
+		int totalPositions = static_cast<int>(list.size());
 
 		const int* begin = list.begin();
 		vector<int> source;

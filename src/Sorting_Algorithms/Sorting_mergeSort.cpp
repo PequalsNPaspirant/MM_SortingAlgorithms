@@ -552,8 +552,15 @@ namespace mm {
 					else
 						break;
 				}
-
 				
+				//	obj[k] = obj[counterFirstSet--];
+				//else if (counterSecondSet > 0)
+				//	obj[k] = copy[counterSecondSet--];
+				//else
+				//	break;
+
+				//if (k == 0)
+				//	break;
 			}
 		}
 	}
@@ -639,7 +646,7 @@ namespace mm {
 					if (counterFirstSet == 0 || --counterFirstSet < firstSetStart)
 						firstSetOver = true;
 				}
-				else
+				else if (counterSecondSet > 0)
 				{
 					if (k != (counterSecondSet + secondSetStart))
 						obj[k] = copy[counterSecondSet];
@@ -648,6 +655,8 @@ namespace mm {
 					else
 						break;
 				}
+				//else
+				//	break;
 
 				if (k == 0)
 					break;
@@ -1119,4 +1128,139 @@ namespace mm {
 	//                       | Block Merge Sort |
 	//=======================+==================+
 
+	template<typename T>
+	class Stack
+	{
+	public:
+		void push(const T& obj)
+		{
+
+		}
+
+		const T& top()
+		{
+
+		}
+
+		void pop()
+		{
+
+		}
+
+		bool empty()
+		{
+			return size() == 0;
+		}
+
+		int size()
+		{
+
+		}
+
+	private:
+
+	};
+
+	void mergeSortForStacks(Stack<int>& stack, bool ascendingOrder = true)
+	{
+		if (stack.size() <= 1)
+			return;
+
+		Stack<int> leftHalf, rightHalf;
+		for (int i = 0; i < stack.size(); ++i)
+		{
+			int obj = stack.top();
+			stack.pop();
+			if (i <= stack.size() / 2)
+				leftHalf.push(obj);
+			else
+				rightHalf.push(obj);
+		}
+		mergeSortForStacks(leftHalf, !ascendingOrder);
+		mergeSortForStacks(rightHalf, !ascendingOrder);
+
+		//Merge
+		//both leftHalf & rightHalf contains elements in ascending order i.e. smallest at top
+		//And stack should also contain all elements in ascending order
+		//So first store elements into a temp stack where it will go in descending order and then empty it into 'stack'
+		//Stack<int> temp;
+		//OR
+		//Pass bool ascendingOrder in alternate order for each recursive call so that the resulting stack will have elements in appropriate order automatically
+		
+		while (!leftHalf.empty() && !rightHalf.empty())
+		{
+			int left = leftHalf.top();
+			int right = rightHalf.top();
+			if (!ascendingOrder && left <= right ||
+				ascendingOrder && left > right)
+			{
+				stack.push(left);
+				leftHalf.pop();
+			}
+			else
+			{
+				stack.push(right);
+				rightHalf.pop();
+			}
+		}
+		//either leftHalf or rightHalf will be non-empty, not both
+		while (!leftHalf.empty())
+		{
+			int left = leftHalf.top();
+			leftHalf.pop();
+			stack.push(left);
+		}
+		while (!rightHalf.empty())
+		{
+			int right = rightHalf.top();
+			rightHalf.pop();
+			stack.push(right);
+		}
+	}
+
+	void quickSortForStacks(Stack<int>& stack, bool ascendingOrder = true)
+	{
+		if (stack.size() <= 1)
+			return;
+
+		int pivot; //TODO: initialize
+		Stack<int> small, big;
+		while (!stack.empty())
+		{
+			int obj = stack.top();
+			stack.pop();
+			if (obj <= pivot)
+				small.push(obj);
+			else
+				big.push(obj);
+		}
+		quickSortForStacks(small, !ascendingOrder);
+		quickSortForStacks(big, !ascendingOrder);
+
+		//put all elements back to original stack:
+		Stack<int>* first = nullptr;
+		Stack<int>* second = nullptr;
+
+		if (ascendingOrder)
+		{
+			first = &big;
+			second = &small;
+		}
+		else
+		{
+			second = &big;
+			first = &small;
+		}
+
+		while (!first->empty())
+		{
+			int obj = first->top();
+			stack.push(obj);
+		}
+		while (!second->empty())
+		{
+			int obj = second->top();
+			stack.push(obj);
+		}
+	}
 }

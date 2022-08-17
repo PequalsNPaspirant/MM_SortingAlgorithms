@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 cmake_policy(SET CMP0091 NEW)
 
-set(PROJECT_NAME MM_Algorithms)
+set(PROJECT_NAME MM_Sorting_Algorithms)
 project(${PROJECT_NAME})
 
 message("building project ${PROJECT_NAME}")
